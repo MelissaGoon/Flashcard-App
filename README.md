@@ -1,7 +1,7 @@
 # Flashcard Game
 ## CPSC 210 Project 
 
-**Project Proposal**:
+###Project Proposal:
 - **What will the application do?**
   - This application will be used to create and study sets 
   of flashcards which consist of a question/ statement and 
@@ -18,3 +18,11 @@
   I find flash cards the best way to memorise terminology. Being
   able to test my recall with questions helps a lot with remembering
   everything.
+
+### User Stories
+- As a user I want to be able to add a flashcard to a flashcard set.
+- As a user I want to be able to see all the flashcards in a set and their associated number.
+- As a user I want to be able to start a new game with 10 MCQ from a set.
+- As a user I want to be able to see if I got a question right or wrong after answering it. 
+- As a user I want to be able to see a final score after the game has ended.
+- As a user I want to be able to remove a flashcard from a flashcard set.
