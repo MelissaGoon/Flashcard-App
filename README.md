@@ -21,7 +21,7 @@
 
 ### User Stories
 - As a user I want to be able to add a flashcard to a flashcard set.
-- As a user I want to be able to see all the flashcards in a set and their associated number.
+- As a user I want to be able to see all the flashcards in a set.
 - As a user I want to be able to start a new game and be prompted to fill in the answer for a statement.
 - As a user I want to be able to see if I got a question right or wrong after answering it. 
 - As a user I want to be able to see a final score after the game has ended.
