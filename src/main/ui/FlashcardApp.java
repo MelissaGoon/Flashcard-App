@@ -10,8 +10,6 @@ public class FlashcardApp {
 
     private Scanner input;
     private FlashcardSet flashcardSet;
-    private Flashcard card1;
-    private Flashcard card2;
 
 
     //EFFECTS: Runs Flashcard application
@@ -66,8 +64,8 @@ public class FlashcardApp {
     // EFFECTS: initializes flashcard set with some flashcards in it
     private void initial() {
         flashcardSet = new FlashcardSet();
-        card1 = new Flashcard("The meaning of life, the universe and everything", "42");
-        card2 = new Flashcard("What's the colour of magic?", "Octarine");
+        Flashcard card1 = new Flashcard("The meaning of life, the universe and everything", "42");
+        Flashcard card2 = new Flashcard("What's the colour of magic?", "Octarine");
         flashcardSet.addFlashcard(card1);
         flashcardSet.addFlashcard(card2);
 
@@ -149,7 +147,7 @@ public class FlashcardApp {
     }
 
 
-    //TODO: Fix next question taking "/n" as answer
+
     //EFFECTS: Runs game that prompts users to fill in the answer for each statement.
     private void playGame() {
         int countCorrect = 0;
@@ -157,12 +155,12 @@ public class FlashcardApp {
         if (flashcardSet.sizeFlashcardSet() == 0) {
             System.out.println("There's nothing in this set...");
         } else {
+            input.nextLine();
             for (Flashcard f: flashcardSet.getFlashcardSet()) {
                 int index = flashcardSet.indexOfFlashcard(f) + 1;
 
                 System.out.println("Question " + index + ":" + f.getStatement());
 
-                input.nextLine();
                 String answer = input.nextLine();
 
                 if (answer.equals(f.getAnswer())) {
