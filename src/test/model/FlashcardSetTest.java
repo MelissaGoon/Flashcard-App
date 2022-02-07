@@ -44,7 +44,9 @@ public class FlashcardSetTest {
         addAndContainsFlashcard(card1);
         assertEquals(1,flashcardSetTester.sizeFlashcardSet());
 
-        assertFalse(flashcardSetTester.addFlashcard(card1));
+        Flashcard copyCard1= new Flashcard("s1", "a1");
+
+        assertFalse(flashcardSetTester.addFlashcard(copyCard1));
         assertTrue(flashcardSetTester.containsFlashcard(card1));
         assertEquals(1,flashcardSetTester.sizeFlashcardSet());
     }
@@ -86,7 +88,7 @@ public class FlashcardSetTest {
         addAndContainsFlashcard(card2);
         addAndContainsFlashcard(card3);
 
-        assertEquals("s1-a1\ns2-a2\ns3-a3\n", flashcardSetTester.seeAllFlashcards());
+        assertEquals("s1---a1\ns2---a2\ns3---a3\n", flashcardSetTester.seeAllFlashcards());
     }
 
     private void addAndContainsFlashcard(Flashcard flashcard) {

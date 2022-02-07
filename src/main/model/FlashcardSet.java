@@ -17,13 +17,20 @@ public class FlashcardSet {
     //EFFECTS: Adds flashcard to the end of a flashcard set and returns true, unless there exists
     // a flashcard with the same statement, then return false.
     public boolean addFlashcard(Flashcard flashcard) {
-        if (!flashcardSet.contains(flashcard)) {
+        if (flashcardSet.isEmpty()) {
             flashcardSet.add(flashcard);
             return true;
         }
-        return false;
+        for (Flashcard f: flashcardSet) {
+            if (Objects.equals(f.getStatement(), flashcard.getStatement())) {
+                return false;
+            }
+        }
+        flashcardSet.add(flashcard);
+        return true;
     }
 
+    //REQUIRES: There must be at least one flashcard in the set.
     //MODIFIES: this
     //EFFECTS: Removes flashcard that matches the given statement and returns true, else returns false.
     public boolean removeFlashcard(String statement) {
@@ -37,9 +44,10 @@ public class FlashcardSet {
     }
 
 
-    //EFFECTS: Returns string of all the statements and answers in a set with a dash between each statement and answer.
+    //EFFECTS: Returns string of all the statements and answers in a set with a dashes between
+    // each statement and answer.
     public String seeAllFlashcards() {
-        String dash = "-";
+        String dash = "---";
 
         StringBuilder sb = new StringBuilder();
 
@@ -51,6 +59,8 @@ public class FlashcardSet {
         }
         return sb.toString();
     }
+
+
 
     //EFFECTS: Returns true if flashcard is in a set, false otherwise
     public boolean containsFlashcard(Flashcard flashcard) {
