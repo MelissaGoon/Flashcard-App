@@ -91,9 +91,21 @@ public class FlashcardSetTest {
         assertEquals("s1---a1\ns2---a2\ns3---a3\n", flashcardSetTester.seeAllFlashcards());
     }
 
+    @Test
+    void testIndexOfFlashcard() {
+        flashcardSetTester.addFlashcard(card1);
+        flashcardSetTester.addFlashcard(card2);
+
+        assertEquals(0, flashcardSetTester.indexOfFlashcard(card1));
+        assertEquals(1, flashcardSetTester.indexOfFlashcard(card2));
+        assertEquals(-1, flashcardSetTester.indexOfFlashcard(card3));
+    }
+
     private void addAndContainsFlashcard(Flashcard flashcard) {
         assertTrue(flashcardSetTester.addFlashcard(flashcard));
         assertTrue(flashcardSetTester.containsFlashcard(flashcard));
     }
+
+
 
 }

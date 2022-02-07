@@ -72,6 +72,11 @@ public class FlashcardSet {
         return flashcardSet.size();
     }
 
+    //EFFECTS: Returns index of flashcard in set
+    public int indexOfFlashcard(Flashcard flashcard) {
+        return flashcardSet.indexOf(flashcard);
+    }
+
 
     public ArrayList<Flashcard> getFlashcardSet() {
         return flashcardSet;

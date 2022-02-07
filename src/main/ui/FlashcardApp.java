@@ -54,8 +54,7 @@ public class FlashcardApp {
                 modifyFlashcardSet();
                 break;
             case "p":
-                //TODO: implement playGame
-                System.out.println("playGame();");
+                playGame();
                 break;
             default:
                 System.out.println("That's not something you can do...");
@@ -147,7 +146,35 @@ public class FlashcardApp {
                 System.out.println("Unable to remove: Flashcard does not exist");
             }
         }
+    }
 
+
+    //TODO: Fix next question taking "/n" as answer
+    //EFFECTS: Runs game that prompts users to fill in the answer for each statement.
+    private void playGame() {
+        int countCorrect = 0;
+
+        if (flashcardSet.sizeFlashcardSet() == 0) {
+            System.out.println("There's nothing in this set...");
+        } else {
+            for (Flashcard f: flashcardSet.getFlashcardSet()) {
+                int index = flashcardSet.indexOfFlashcard(f) + 1;
+
+                System.out.println("Question " + index + ":" + f.getStatement());
+
+                input.nextLine();
+                String answer = input.nextLine();
+
+                if (answer.equals(f.getAnswer())) {
+                    System.out.println("Correct!");
+                    ++countCorrect;
+                } else {
+                    System.out.println("Incorrect");
+                }
+            }
+
+            System.out.println("Score:\n" + countCorrect + "/" + flashcardSet.sizeFlashcardSet());
+        }
     }
 
 
