@@ -26,3 +26,5 @@
 - As a user I want to be able to see if I got a question right or wrong after answering it. 
 - As a user I want to be able to see a final score after the game has ended.
 - As a user I want to be able to remove a flashcard from a flashcard set.
+- As a user I want to be able to save my flashcard set to file.
+- As a user I want to be able to be able to load my flashcard set from file. 
