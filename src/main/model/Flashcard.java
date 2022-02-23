@@ -1,7 +1,10 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 // Represents a flashcard that has a statement and an answer.
-public class Flashcard {
+public class Flashcard implements Writable {
     private String statement;
     private String answer;
 
@@ -20,5 +23,13 @@ public class Flashcard {
         return answer;
     }
 
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("statement", statement);
+        json.put("answer", answer);
+        return json;
+    }
 
 }
