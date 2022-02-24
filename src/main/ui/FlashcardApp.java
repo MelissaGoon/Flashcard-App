@@ -2,14 +2,20 @@ package ui;
 
 import model.Flashcard;
 import model.FlashcardSet;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
 
 // Flashcard application
 public class FlashcardApp {
-
+    private static final String JSON_STORE = "./data/flashcardSet.json";
     private Scanner input;
     private FlashcardSet flashcardSet;
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
 
 
     //EFFECTS: Runs Flashcard application
@@ -45,7 +51,7 @@ public class FlashcardApp {
     // EFFECTS: processes user command
     private void processCommand(String command) {
         switch (command) {
-            case "s":
+            case "f":
                 seeFlashcardSet();
                 break;
             case "m":
@@ -54,6 +60,12 @@ public class FlashcardApp {
             case "p":
                 playGame();
                 break;
+            case "s":
+                saveFlashcardSet();
+                break;
+            case "l":
+                loadFlashcardSet();
+                break;
             default:
                 System.out.println("That's not something you can do...");
                 break;
@@ -61,13 +73,11 @@ public class FlashcardApp {
     }
 
     // MODIFIES: this
-    // EFFECTS: initializes flashcard set with some flashcards in it
+    // EFFECTS: initializes flashcard set
     private void initial() {
         flashcardSet = new FlashcardSet();
-        Flashcard card1 = new Flashcard("The meaning of life, the universe and everything", "42");
-        Flashcard card2 = new Flashcard("What's the colour of magic?", "Octarine");
-        flashcardSet.addFlashcard(card1);
-        flashcardSet.addFlashcard(card2);
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
 
         input = new Scanner(System.in);
         input.useDelimiter("\n");
@@ -77,9 +87,11 @@ public class FlashcardApp {
     // EFFECTS: displays menu of options to user
     private void displayMenu() {
         System.out.println("\nChoose from:");
-        System.out.println("\ts -> See flashcard set");
+        System.out.println("\tf -> See flashcard set");
         System.out.println("\tm -> Modify flashcard set");
         System.out.println("\tp -> Play game");
+        System.out.println("\ts -> Save flashcard set");
+        System.out.println("\tl -> Load flashcard set");
         System.out.println("\tq -> Quit");
     }
 
@@ -92,18 +104,20 @@ public class FlashcardApp {
     private void modifyFlashcardSet() {
         String selection = "";  // force entry into loop
 
-        while (!(selection.equals("a") || selection.equals("r"))) {
+        while (!(selection.equals("a") || selection.equals("r") || selection.equals("c"))) {
             System.out.println("a -> Add a flashcard to the set");
             System.out.println("r -> Remove a flashcard from the set");
+            System.out.println("c -> Cancel");
             selection = input.next();
             selection = selection.toLowerCase();
         }
 
         if (selection.equals("a")) {
             goAddFlashcard();
-        } else {
+        } else if (selection.equals("r")) {
             goRemoveFlashcard();
         }
+
     }
 
     //MODIFIES: this
@@ -173,6 +187,32 @@ public class FlashcardApp {
 
             System.out.println("Score:\n" + countCorrect + "/" + flashcardSet.sizeFlashcardSet());
         }
+    }
+
+    //EFFECTS: Saves flashcard set to file
+    private void saveFlashcardSet() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(flashcardSet);
+            jsonWriter.close();
+            System.out.println("Flashcard set saved successfully to:" + JSON_STORE);
+
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
+        }
+    }
+
+    //MODIFIES: this
+    //EFFECTS: Loads flashcard set from file
+    private void loadFlashcardSet() {
+        try {
+            flashcardSet = jsonReader.read();
+            System.out.println("Loaded flashcard set from:" + JSON_STORE);
+
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
+        }
+
     }
 
 
