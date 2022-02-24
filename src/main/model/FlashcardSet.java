@@ -81,10 +81,16 @@ public class FlashcardSet implements Writable {
         return flashcardSet.indexOf(flashcard);
     }
 
+    //EFFECTS: Returns flashcard at specified index from set
+    public Flashcard getFlashcardInSet(int index) {
+        return flashcardSet.get(index);
+    }
 
     public ArrayList<Flashcard> getFlashcardSet() {
         return flashcardSet;
     }
+
+
 
 
     @Override

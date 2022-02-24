@@ -101,6 +101,16 @@ public class FlashcardSetTest {
         assertEquals(-1, flashcardSetTester.indexOfFlashcard(card3));
     }
 
+    @Test
+    void testGetFlashcardInSet() {
+        flashcardSetTester.addFlashcard(card1);
+        flashcardSetTester.addFlashcard(card2);
+
+        assertEquals(card1, flashcardSetTester.getFlashcardInSet(0));
+        assertEquals(card2, flashcardSetTester.getFlashcardInSet(1));
+
+    }
+
     private void addAndContainsFlashcard(Flashcard flashcard) {
         assertTrue(flashcardSetTester.addFlashcard(flashcard));
         assertTrue(flashcardSetTester.containsFlashcard(flashcard));
