@@ -34,7 +34,7 @@ public class FlashcardSet implements Writable {
         return true;
     }
 
-    //REQUIRES: There must be at least one flashcard in the set.
+
     //MODIFIES: this
     //EFFECTS: Removes flashcard that matches the given statement and returns true, else returns false.
     public boolean removeFlashcard(String statement) {

@@ -78,6 +78,15 @@ public class FlashcardSetTest {
     }
 
     @Test
+    void testRemoveFlashcardEmpty() {
+        assertFalse(flashcardSetTester.removeFlashcard(card2.getStatement()));
+        assertEquals(0, flashcardSetTester.sizeFlashcardSet());
+
+        assertFalse(flashcardSetTester.removeFlashcard(card3.getStatement()));
+        assertEquals(0, flashcardSetTester.sizeFlashcardSet());
+    }
+
+    @Test
     void testSeeAllFlashcardsEmpty() {
         assertEquals("", flashcardSetTester.seeAllFlashcards());
     }
