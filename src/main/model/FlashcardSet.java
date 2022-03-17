@@ -5,7 +5,6 @@ import org.json.JSONObject;
 import persistence.Writable;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 // Represents a set of flashcards.
 public class FlashcardSet implements Writable {
@@ -26,7 +25,7 @@ public class FlashcardSet implements Writable {
             return true;
         }
         for (Flashcard f: flashcardSet) {
-            if (Objects.equals(f.getStatement(), flashcard.getStatement())) {
+            if (f.getStatement().equalsIgnoreCase(flashcard.getStatement())) {
                 return false;
             }
         }
@@ -39,7 +38,7 @@ public class FlashcardSet implements Writable {
     //EFFECTS: Removes flashcard that matches the given statement and returns true, else returns false.
     public boolean removeFlashcard(String statement) {
         for (Flashcard flashcard: flashcardSet) {
-            if (Objects.equals(flashcard.getStatement(), statement)) {
+            if (flashcard.getStatement().equalsIgnoreCase(statement)) {
                 flashcardSet.remove(flashcard);
                 return true;
             }
