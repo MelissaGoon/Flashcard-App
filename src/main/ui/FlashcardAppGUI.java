@@ -16,7 +16,7 @@ import java.io.IOException;
 
 public class FlashcardAppGUI extends JFrame implements ActionListener {
     public static final int WIDTH = 300;
-    public static final int HEIGHT = 360;
+    public static final int HEIGHT = 365;
 
     private static final String JSON_STORE = "./data/flashcardSet.json";
     private FlashcardSet flashcardSet;
@@ -55,10 +55,10 @@ public class FlashcardAppGUI extends JFrame implements ActionListener {
         pane.setLayout(new BoxLayout(pane, BoxLayout.Y_AXIS));
 
         // Add title
-        JLabel title = new JLabel("Flashcard App");
-        title.setFont(new Font("Georgia", Font.PLAIN, 30));
-        title.setAlignmentX(Component.CENTER_ALIGNMENT);
-        pane.add(title);
+        ImageIcon title = createImageIcon("flashcard app title.png");
+        JLabel titleimage = new JLabel(title);
+        titleimage.setAlignmentX(Component.CENTER_ALIGNMENT);
+        pane.add(titleimage);
 
         // Add buttons
         addButton("See all flashcards", "see", pane);
@@ -181,7 +181,7 @@ public class FlashcardAppGUI extends JFrame implements ActionListener {
     private void removeFlashcardDialog() {
         JTextField statement = new JTextField();
         Object[] message = {
-                "Statement of flashcard:", statement,
+                "Statement of flashcard you'd like to remove:", statement,
         };
 
         int option = JOptionPane.showConfirmDialog(null, message,
