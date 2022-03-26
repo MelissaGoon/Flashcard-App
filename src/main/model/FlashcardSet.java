@@ -22,14 +22,17 @@ public class FlashcardSet implements Writable {
     public boolean addFlashcard(Flashcard flashcard) {
         if (flashcardSet.isEmpty()) {
             flashcardSet.add(flashcard);
+            EventLog.getInstance().logEvent(new Event("Flashcard added"));
             return true;
         }
         for (Flashcard f: flashcardSet) {
             if (f.getStatement().equalsIgnoreCase(flashcard.getStatement())) {
+                EventLog.getInstance().logEvent(new Event("Failed to add flashcard"));
                 return false;
             }
         }
         flashcardSet.add(flashcard);
+        EventLog.getInstance().logEvent(new Event("Flashcard added"));
         return true;
     }
 
@@ -40,9 +43,11 @@ public class FlashcardSet implements Writable {
         for (Flashcard flashcard: flashcardSet) {
             if (flashcard.getStatement().equalsIgnoreCase(statement)) {
                 flashcardSet.remove(flashcard);
+                EventLog.getInstance().logEvent(new Event("Flashcard removed"));
                 return true;
             }
         }
+        EventLog.getInstance().logEvent(new Event("Failed to remove flashcard"));
         return false;
     }
 

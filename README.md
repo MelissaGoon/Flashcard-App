@@ -28,3 +28,31 @@
 - As a user I want to be able to remove a flashcard from a flashcard set.
 - As a user I want to be able to save my flashcard set to file.
 - As a user I want to be able to be able to load my flashcard set from file. 
+
+### Phase 4: Task 2
+**The first three add events occur when the flashcards are automatically loaded from file.**
+
+Loaded flashcard set from:./data/flashcardSet.json
+
+Sat Mar 26 14:37:41 PDT 2022
+Flashcard added
+
+Sat Mar 26 14:37:41 PDT 2022
+Flashcard added
+
+Sat Mar 26 14:37:41 PDT 2022
+Flashcard added
+
+Sat Mar 26 14:37:47 PDT 2022
+Flashcard added
+
+Sat Mar 26 14:37:53 PDT 2022
+Flashcard added
+
+Sat Mar 26 14:38:00 PDT 2022
+Flashcard removed
+
+Sat Mar 26 14:38:05 PDT 2022
+Flashcard removed
+
+Process finished with exit code 0

@@ -1,7 +1,10 @@
 package ui;
 
+import model.Event;
+import model.EventLog;
 import model.Flashcard;
 import model.FlashcardSet;
+import model.exceptions.LogException;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 
@@ -31,7 +34,7 @@ public class FlashcardAppGUI extends JFrame implements ActionListener {
         jsonWriter = new JsonWriter(JSON_STORE);
         jsonReader = new JsonReader(JSON_STORE);
 
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
         ((JPanel) getContentPane()).setBorder(new EmptyBorder(13, 13, 13, 13));
         addComponentsToPane(getContentPane());
@@ -45,9 +48,30 @@ public class FlashcardAppGUI extends JFrame implements ActionListener {
             System.out.println("Unable to read from file: " + JSON_STORE);
         }
 
+        try {
+            printLogOnClose(EventLog.getInstance());
+        } catch (LogException e) {
+            System.out.println("System Error");
+            e.printStackTrace();
+        }
+
         pack();
         setLocationRelativeTo(null);
         setVisible(true);
+    }
+
+    // EFFECTS: Prints EventLog on closing
+    private void printLogOnClose(EventLog el) throws LogException {
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                for (Event next: el) {
+                    System.out.println(next.toString());
+                }
+
+                System.exit(0);
+            }
+        });
     }
 
     // EFFECTS: Adds components to pane in box layout
@@ -94,7 +118,7 @@ public class FlashcardAppGUI extends JFrame implements ActionListener {
                 break;
             case "remove":
                 if (flashcardSet.sizeFlashcardSet() == 0) {
-                    emptySetDialog();
+                    emptySetDialog("Nothing to remove!");
                 } else {
                     removeFlashcardDialog();
                 }
@@ -167,11 +191,11 @@ public class FlashcardAppGUI extends JFrame implements ActionListener {
 
     }
 
-    //EFFECTS: Creates and shows message dialog for when user tries to remove flashcard from empty set
-    private void emptySetDialog() {
+    //EFFECTS: Creates and shows message dialog for when user tries to do something they can't to empty set
+    private void emptySetDialog(String title) {
         JOptionPane.showMessageDialog(null,
-                "This set is already empty!",
-                "Nothing to remove",
+                "This set is empty!",
+                title,
                 JOptionPane.WARNING_MESSAGE);
     }
 
@@ -201,6 +225,7 @@ public class FlashcardAppGUI extends JFrame implements ActionListener {
             }
         }
     }
+
 
     // Taken from: How To Use Icons (author unknown) found at
     // https://docs.oracle.com/javase/tutorial/uiswing/components/icon.html
