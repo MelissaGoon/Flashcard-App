@@ -56,3 +56,9 @@ Sat Mar 26 14:38:05 PDT 2022
 Flashcard removed
 
 Process finished with exit code 0
+
+### Phase 4: Task 3
+Due to the relative simplicity of my program I don't think any refactoring would be required. 
+As far as I can tell, there do not seem to be any issues with coupling (medium coupling).
+If the program had additional functionality, it may be useful to create different
+classes for different functions of the GUI in order to follow the Single Responsibility Principle.

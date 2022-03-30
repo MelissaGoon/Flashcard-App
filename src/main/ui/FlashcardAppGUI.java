@@ -16,7 +16,7 @@ import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-
+// Creates and shows the Flashcard App GUI
 public class FlashcardAppGUI extends JFrame implements ActionListener {
     public static final int WIDTH = 300;
     public static final int HEIGHT = 365;
@@ -107,6 +107,7 @@ public class FlashcardAppGUI extends JFrame implements ActionListener {
     }
 
 
+    // Processes button commands on main menu.
     @Override
     public void actionPerformed(ActionEvent e) {
         switch (e.getActionCommand()) {
